@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState } from "react";
 import {StoreItem} from "./components/StoreItem"
-import {HandleFilter} from "./components/HandleFilter"
+import {ShowCart} from "./components/ShowCart"
 const storeData = [
   {
     "name": "Messi Barcelona Jersey",
@@ -137,6 +137,8 @@ function App() {
   function updateSort(e){
     let obj = e.target.value
     setSort(obj)
+    const newdata = handleSort(obj, data)
+    setData(newdata)
   }
   // useEffect(()=>{
   //   const newData = handleSort(sort, data)
@@ -206,8 +208,8 @@ function App() {
   return (
     <div className="App">
       <h1>My Store</h1> {}
-      <div class = "flex-container">
-        <div>
+      <div class="flex-container">
+        <div class="left">
         <p>Sort</p>
           <button value="By Team" onClick={updateSort}>By Team</button>
           <button value="Price" onClick={updateSort}>Price</button>
@@ -223,15 +225,18 @@ function App() {
           <button value="Manchester United" onClick={updateTeam}>Manchester United</button>
           <button value="PSG" onClick={updateTeam}>PSG</button>
         </div>
-        <div>
+        <div class="middle">
         {data.map((item, index) => ( 
         <StoreItem item = {item} handleClick={handleClick}/>
         ))}
         </div>
-        <div>
+        <div class="right">
           <h2>Favorites</h2>
-          
-          <p>{cart}</p>
+          <ul>
+            {cart.map(item =>{
+            <li key={item}>{item}</li>
+            })} </ul>
+          <p>Total Price</p>
           <p>{price}</p>
           
         </div>
