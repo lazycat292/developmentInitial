@@ -234,7 +234,7 @@ function App() {
           <h2>Favorites</h2>
           <ul>
             {cart.map(item =>{
-            <li key={item}>{item}</li>
+            return <li key={item}>{item}</li>
             })} </ul>
           <p>Total Price</p>
           <p>{price}</p>
