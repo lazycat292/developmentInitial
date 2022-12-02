@@ -9,7 +9,7 @@ const storeData = [
     "team": "Barcelona",
     "price": 147.99,
     "image": "messijersey.png",
-    "buttontext": "Add to Favorites"
+    "popularity": 99
   },
   {
     "name": "Lewandowski Barcelona Jersey",
@@ -17,7 +17,7 @@ const storeData = [
     "team": "Barcelona",
     "price": 139.99,
     "image": "lewandowskijersey.png",
-    "buttontext": "Add to Favorites"
+    "popularity": 76
   },
   {
     "name": "Nike Barcelona Vector Cleats",
@@ -25,7 +25,7 @@ const storeData = [
     "team": "Barcelona",
     "price": 122.99,
     "image": "barcelonacleats.jfif",
-    "buttontext": "Add to Favorites"
+    "popularity": 17
   },
   {
     "name": "Barcelona Ball",
@@ -33,7 +33,7 @@ const storeData = [
     "team": "Barcelona",
     "price": 25.99,
     "image": "barcelonaball.png",
-    "buttontext": "Add to Favorites"
+    "popularity": 52
   },
   {
       "name": "Ronaldo Manchester United Jersey",
@@ -41,7 +41,7 @@ const storeData = [
       "team": "Manchester United",
       "price": 144.99,
       "image": "ronaldojersey.png",
-      "buttontext": "Add to Favorites"
+      "popularity": 95
     },
     {
       "name": "Rashford Manchester United Jersey",
@@ -49,7 +49,7 @@ const storeData = [
       "team": "Manchester United",
       "price": 119.99,
       "image": "rashfordjersey.png",
-      "buttontext": "Add to Favorites"
+      "popularity": 48
     },
     {
       "name": "Nike Manchester United Venom Cleats",
@@ -57,7 +57,7 @@ const storeData = [
       "team": "Manchester United",
       "price": 109.99,
       "image": "mancheterunitedcleats.jfif",
-      "buttontext": "Add to Favorites"
+      "popularity": 77
     },
     {
       "name": "Manchester United Ball",
@@ -65,7 +65,7 @@ const storeData = [
       "team": "Manchester United",
       "price": 22.99,
       "image": "mancheterunitedball.jfif",
-      "buttontext": "Add to Favorites"
+      "popularity": 55
     },
     {
       "name": "Neymar PSG Jersey",
@@ -73,7 +73,7 @@ const storeData = [
       "team": "PSG",
       "price": 135.99,
       "image": "neymarjersey.png",
-      "buttontext": "Add to Favorites"
+      "popularity": 88
     },
     {
       "name": "Mbappe PSG Jersey",
@@ -81,7 +81,7 @@ const storeData = [
       "team": "PSG",
       "price": 137.99,
       "image": "mbappejersey.png",
-      "buttontext": "Add to Favorites"
+      "popularity": 86
     },
     {
       "name": "Nike PSG Anchor Cleats",
@@ -89,7 +89,7 @@ const storeData = [
       "team": "PSG",
       "price": 114.99,
       "image": "psgcleats.png",
-      "buttontext": "Add to Favorites"
+      "popularity": 67
     },
     {
       "name": "PSG Ball",
@@ -97,7 +97,7 @@ const storeData = [
       "team": "PSG",
       "price": 23.99,
       "image": "psgball.png",
-      "buttontext": "Add to Favorites"
+      "popularity": 45
     }
   
 ]
@@ -111,7 +111,37 @@ function App() {
   const [list, setList] = useState({});
   const [type, setType] = useState("All");
   const [team, setTeam] = useState("All");
+  const [sort, setSort] = useState("By Team")
   const [data, setData] = useState(storeData);
+
+  function updateType(e){
+    let obj = e.target.value
+    setType(obj)
+  }
+  useEffect(()=>{
+    const newData = handleType(type, storeData)
+    const finallData = handleTeam(team, newData)
+    const finalData = handleSort(sort, finallData)
+    setData(finalData)
+  },[type, team, sort])
+  function updateTeam(e){
+    let obj = e.target.value
+    setTeam(obj)
+  }
+  // useEffect(()=>{
+  //   const newData = handleType(type, storeData)
+  //   const finallData = handleTeam(team, newData)
+  //   const finalData = handleSort(sort, finallData)
+  //   setData(finalData)
+  // },[team])
+  function updateSort(e){
+    let obj = e.target.value
+    setSort(obj)
+  }
+  // useEffect(()=>{
+  //   const newData = handleSort(sort, data)
+  //   setData(newData)
+  // },[sort])
 
   function handleClick(name, cost){
     if (list[name]===1){
@@ -133,43 +163,43 @@ function App() {
     } 
   }
   
-  function handleType(e){
-    let obj = e.target.value
-    setType(obj =>{
-      return obj
-    })
-    if (obj === "All"){
-      setData(storeData)
-    } 
-    else{
-      const newData = storeData.filter(each => {
-        return each.type === obj})
-      setData(newData)
+  function handleType(type, data){
+    setType(type)
+    if (type === "All"){
+      return data
     }
-
-    if(team !== "All"){
-    const finalData = data.filter(each=> {
-      return each.team === team})
-    setData(finalData)
+    else{
+      const newData = data.filter(each =>{
+        return each.type === type
+      })
+      return newData
     }
   }
-  function handleTeam(e){
-    let obj = e.target.value
-    setTeam(obj=>{
-      return obj
-    })
-    if (obj === "All"){
-      setData(storeData)
-    } 
-    else{
-      const newData = storeData.filter(each => {
-        return each.team === obj})
-      setData(newData)
+  function handleTeam(team, data){
+    setTeam(team)
+    if (team === "All"){
+      return data
     }
-    if(type !== "All"){
-    const finalData = data.filter(each=> {
-      return each.type === type})
-    setData(finalData)
+    else{
+      const newData = data.filter(each =>{
+        return each.team === team
+      })
+      return newData
+    }
+  }
+  function handleSort(sort, data){
+    setSort(sort)
+    if (sort === "By Team"){
+      const newdata = data.sort((a,b)=>(a.team < b.team ? -1 : 1))
+      return newdata
+    }
+    if (sort === "Price"){
+      const newdata =data.sort((a,b)=>(a.price < b.price ? -1 : 1))
+      return newdata
+    }
+    if (sort === "Popularity"){
+      const newdata =data.sort((a,b)=>(a.popularity > b.popularity ? -1 : 1))
+      return newdata
     }
   }
 
@@ -178,16 +208,20 @@ function App() {
       <h1>My Store</h1> {}
       <div class = "flex-container">
         <div>
+        <p>Sort</p>
+          <button value="By Team" onClick={updateSort}>By Team</button>
+          <button value="Price" onClick={updateSort}>Price</button>
+          <button value="Popularity" onClick={updateSort}>Popularity</button>
           <p>Types</p>
-          <button value="All" onClick={handleType}>All</button>
-          <button value="Jersey" onClick={handleType}>Jerseys</button>
-          <button value="Ball" onClick={handleType}>Balls</button>
-          <button value="Shoe" onClick={handleType}>Cleats</button>
+          <button value="All" onClick={updateType}>All</button>
+          <button value="Jersey" onClick={updateType}>Jerseys</button>
+          <button value="Ball" onClick={updateType}>Balls</button>
+          <button value="Shoe" onClick={updateType}>Cleats</button>
           <p>Teams</p>
-          <button value="All" onClick={handleTeam}>All</button>
-          <button value="Barcelona" onClick={handleTeam}>Barcelona</button>
-          <button value="Manchester United" onClick={handleTeam}>Manchester United</button>
-          <button value="PSG" onClick={handleTeam}>PSG</button>
+          <button value="All" onClick={updateTeam}>All</button>
+          <button value="Barcelona" onClick={updateTeam}>Barcelona</button>
+          <button value="Manchester United" onClick={updateTeam}>Manchester United</button>
+          <button value="PSG" onClick={updateTeam}>PSG</button>
         </div>
         <div>
         {data.map((item, index) => ( 
