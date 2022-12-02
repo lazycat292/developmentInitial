@@ -1,0 +1,88 @@
+[
+    {
+      "name": "Messi Barcelona Jersey",
+      "type": "Jersey",
+      "team": "Barcelona",
+      "price": 147.99,
+      "image": "./images/anika.png"
+    },
+    {
+      "name": "Lewandowski Barcelona Jersey",
+      "type": "Jersey",
+      "team": "Barcelona",
+      "price": 139.99,
+      "image": "images/aubrey.png"
+    },
+    {
+      "name": "Nike Barcelona Vector Cleats",
+      "type": "Shoe",
+      "team": "Barcelona",
+      "price": 122.99,
+      "image": "images/connie.png"
+    },
+    {
+      "name": "Barcelona Ball",
+      "type": "Ball",
+      "team": "Barcelona",
+      "price": 25.99,
+      "image": "images/dylan.png"
+    },
+    {
+        "name": "Ronaldo Manchester United Jersey",
+        "type": "Jersey",
+        "team": "Manchester United",
+        "price": 144.99,
+        "image": "images/anika.png"
+      },
+      {
+        "name": "Rashford Manchester United Jersey",
+        "type": "Jersey",
+        "team": "Manchester United",
+        "price": 119.99,
+        "image": "images/aubrey.png"
+      },
+      {
+        "name": "Nike Manchester United Venom Cleats",
+        "type": "Shoe",
+        "team": "Manchester United",
+        "price": 109.99,
+        "image": "images/connie.png"
+      },
+      {
+        "name": "Manchester United Ball",
+        "type": "Ball",
+        "team": "Manchester United",
+        "price": 22.99,
+        "image": "images/dylan.png"
+      },
+      {
+        "name": "Neymar PSG Jersey",
+        "type": "Jersey",
+        "team": "PSG",
+        "price": 135.99,
+        "image": "images/anika.png"
+      },
+      {
+        "name": "Mbappe PSG Jersey",
+        "type": "Jersey",
+        "team": "PSG",
+        "price": 137.99,
+        "image": "images/aubrey.png"
+      },
+      {
+        "name": "Nike PSG Anchor Cleats",
+        "type": "Shoe",
+        "team": "PSG",
+        "price": 114.99,
+        "image": "images/connie.png"
+      },
+      {
+        "name": "PSG Ball",
+        "type": "Ball",
+        "team": "PSG",
+        "price": 23.99,
+        "image": "images/dylan.png"
+      }
+    
+  ]
+  
